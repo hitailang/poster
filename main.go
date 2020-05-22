@@ -15,6 +15,7 @@ import (
 	"github.com/rs/xid"
 )
 
+// 海报组件使用示例
 func main() {
 
 	nullHandler := &handler.NullHandler{}
