@@ -51,10 +51,11 @@ import (
 		Path: "./assets/background.png", //图片路径
 	}
 	//绘制圆形图像
-	imageCircleHandler := &handler.ImageCircleHandler{
+	imageCircleLocalHandler := &handler.ImageCircleLocalHandler{
 		X:   30, // 图片x坐标
 		Y:   50, // 图片y坐标
-		URL: "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLJT9ncWLPov6rAzn4VCPSC4QoAvdangHRB1JgszqCvffggAysvzpm5MDb72Io4g9YAScHEw7xSWg/132", //图片路径
+        Path: "./assets/reward.png",
+		//URL: "http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLJT9ncWLPov6rAzn4VCPSC4QoAvdangHRB1JgszqCvffggAysvzpm5MDb72Io4g9YAScHEw7xSWg/132", //图片路径
 	}
 	//绘制本地图像
 	imageLocalHandler := &handler.ImageLocalHandler{
@@ -101,7 +102,7 @@ import (
 	// 链式调用绘制过程
 	nullHandler.
 		SetNext(backgroundHandler).
-		SetNext(imageCircleHandler).
+		SetNext(imageCircleLocalHandler).
 		SetNext(textHandler1).
 		SetNext(textHandler2).
 		SetNext(imageLocalHandler).
