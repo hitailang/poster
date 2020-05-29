@@ -13,25 +13,27 @@ import (
 	"github.com/hitailang/poster/circlemask"
 	"github.com/hitailang/poster/core"
 	"image"
+	"os"
 )
-
-// ImageCircleHandler 根据URL地址设置圆形图片
-type ImageCircleHandler struct {
+// ImageCircleLocalHandler 根据Path路径设置圆形图片
+type ImageCircleLocalHandler struct {
 	// 合成复用Next
 	Next
 	X   int
 	Y   int
-	URL string //http://xxx.png
+	Path string //./images/xx.png
 }
 
 // Do 地址逻辑
-func (h *ImageCircleHandler) Do(c *Context) (err error) {
-	srcReader, err := core.GetResourceReader(h.URL)
+func (h *ImageCircleLocalHandler) Do(c *Context) (err error) {
+
+	imageFile, err := os.Open(h.Path)
 	if err != nil {
-		fmt.Errorf("core.GetResourceReader err：%v", err)
+		fmt.Errorf("os.Open err：%v", err)
 	}
-	srcImage, imageType, err := image.Decode(srcReader)
-	_ = imageType
+
+	srcImage,_,err := image.Decode(imageFile)
+
 	if err != nil {
 		fmt.Errorf("SetRemoteImage image.Decode err：%v", err)
 	}
